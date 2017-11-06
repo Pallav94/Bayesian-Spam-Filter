@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <Button fx:id="process" layoutX="34.0" layoutY="28.0" mnemonicParsing="false" onAction="#processData" prefHeight="27.0" prefWidth="90.0" text="Process" />
+      <Button layoutX="290.0" layoutY="669.0" mnemonicParsing="false" onAction="#processFile" prefHeight="27.0" prefWidth="90.0" text="Test" />
+      <Label layoutX="59.0" layoutY="570.0" prefHeight="17.0" prefWidth="128.0" text="Positive Probability:" />
+      <Label layoutX="59.0" layoutY="618.0" text="Negative Probability:" />
+      <Label fx:id="positive" layoutX="235.0" layoutY="570.0" textFill="#1b7917">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="negative" layoutX="237.0" layoutY="618.0" textFill="#f20202" />
+      <Button layoutX="55.0" layoutY="669.0" mnemonicParsing="false" onAction="#dataSet" prefHeight="27.0" prefWidth="90.0" text="Data" />
+      <Button layoutX="174.0" layoutY="669.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="27.0" prefWidth="90.0" text="Choose File" />
+      <Label layoutX="58.0" layoutY="519.0" text="File Path:" />
+      <TextArea fx:id="mailBody" layoutX="228.0" layoutY="104.0" prefHeight="274.0" prefWidth="507.0" />
+      <Button layoutX="404.0" layoutY="669.0" mnemonicParsing="false" onAction="#showImage" text="Show Image" />
+      <Label fx:id="file" layoutX="128.0" layoutY="519.0" />
+      <BarChart fx:id="chart" layoutX="546.0" layoutY="442.0" prefHeight="274.0" prefWidth="367.0">
+        <xAxis>
+          <CategoryAxis label="Category" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="Probability" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label layoutX="454.0" layoutY="69.0" text="Mail Content" />
+   </children>
+</AnchorPane>
