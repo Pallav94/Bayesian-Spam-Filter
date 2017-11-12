@@ -7,23 +7,23 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Testing {
-	int totalHamMails=1;
-	int totalSpamMails=1;
+	int totalHamMails=2171;
+	int totalSpamMails=433;
 	HashMap<String,Integer> spam=new HashMap<String,Integer>();
 	HashMap<String,Integer> ham=new HashMap<String,Integer>();
 	public void getList() {
 	    	String temp;
 		try {
-             File filespam = new File("/Users/pallavsaxena/Desktop/Words.txt");
+             File filespam = new File("/Users/pallavsaxena/Desktop/spam.txt");
              BufferedReader BF1 = new BufferedReader(new FileReader(filespam));
              System.out.println("Inserting .....");
              while ((temp = BF1.readLine()) != null) {
-                 String words[]=temp.split("\\s");
+                 String words[]=temp.toLowerCase().split("\\s");
                  spam.put(words[0],Integer.parseInt(words[1]));
              }
              BF1.close();
              
-             File fileham = new File("/Users/pallavsaxena/Desktop/Words.txt");
+             File fileham = new File("/Users/pallavsaxena/Desktop/ham.txt");
              BufferedReader BF2 = new BufferedReader(new FileReader(fileham));
              System.out.println("Inserting .....");
              while ((temp = BF2.readLine()) != null) {
@@ -44,7 +44,7 @@ public class Testing {
 		double spamP=1;
 		double cat1=(double)totalHamMails/(double)(totalHamMails+totalSpamMails);
 		double cat2=(double)totalSpamMails/(double)(totalHamMails+totalSpamMails);
-		String[] temp=s.split("\\s");
+		String[] temp=s.toLowerCase().split("[^\\p{L}0-9']+");
 		for(int i=0;i<temp.length;i++) {
 			if(ham.get(temp[i])!=null) {
 				x=ham.get(temp[i]);
@@ -60,8 +60,8 @@ public class Testing {
 			}
 			System.out.println("x:"+x+" "+"y:"+y);
 			double total=x+y;
-			hprobability=x/totalHamMails;
-			sprobability=y/totalSpamMails;
+			hprobability=(double)x/(double)totalHamMails;
+			sprobability=(double)y/(double)totalSpamMails;
 			System.out.println("total:"+total);
 			System.out.println(hprobability+" "+sprobability);
 			double wHProbability=(0.5+(hprobability*total))/(1+total);
@@ -69,6 +69,7 @@ public class Testing {
 			System.out.println("HP:"+wHProbability+" "+"SP:"+wSProbability);
 			hamP=hamP*wHProbability;
 			spamP=spamP*wSProbability;
+			System.out.println("hamP:"+hamP+" "+"spamP:"+spamP+"\n");
 		}
 		System.out.println(totalHamMails+"  "+totalSpamMails);
 		System.out.println("cat1:"+cat1+" "+"cat2:"+cat2);

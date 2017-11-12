@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="425.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ImageFileController">
    <children>
-      <ImageView fx:id="imageSpam" fitHeight="319.0" fitWidth="287.0" layoutX="75.0" layoutY="53.0" pickOnBounds="true">
-         <image>
-            <Image url="file:/Users/pallavsaxena/eclipse-workspace/Naive%20Bayes%20SpamFilter/src/application/placeholder.png" />
-         </image>
-      </ImageView>
       <Label layoutX="185.0" layoutY="26.0" text="Image File">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <ImageView fx:id="imageSpam" fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

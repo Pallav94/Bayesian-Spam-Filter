@@ -32,11 +32,11 @@ public class DatasetController implements Initializable{
 		// TODO Auto-generated method stub
 	  String temp;
 		try {
-        		File fileham = new File("/Users/pallavsaxena/Desktop/Words.txt");
+        		File fileham = new File("/Users/pallavsaxena/Desktop/ham.txt");
             BufferedReader BF2 = new BufferedReader(new FileReader(fileham));
 			while ((temp = BF2.readLine()) != null) {
 				String x[]=temp.split("\\s");
-				System.out.println(x[0]+" "+x[1]);
+				//System.out.println(x[0]+" "+x[1]);
 				list1.add(new Positive(x[0],x[1]));
 			}
 			BF2.close();
@@ -44,11 +44,11 @@ public class DatasetController implements Initializable{
 			frequency.setCellValueFactory(new PropertyValueFactory<Positive,String>("Frequency"));
 			table.setItems(list1);
 			
-			File fileham1 = new File("/Users/pallavsaxena/Desktop/Words.txt");
+			File fileham1 = new File("/Users/pallavsaxena/Desktop/spam.txt");
             BF2 = new BufferedReader(new FileReader(fileham1));
 			while ((temp = BF2.readLine()) != null) {
 				String x[]=temp.split("\\s");
-				System.out.println(x[0]+" "+x[1]);
+				//System.out.println(x[0]+" "+x[1]);
 				list2.add(new Negative(x[0],x[1]));
 			}
 			BF2.close();

@@ -5,25 +5,24 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -32,31 +31,34 @@ public class Controller{
 	@FXML
 	private Label positive;
 	@FXML
+	private Label result;
+	@FXML
 	private Label negative;
 	@FXML
 	private Label file;
-	@FXML
-    private BarChart<?, ?> chart;
+	//@FXML
+    //private BarChart<?, ?> chart;
 	@FXML
     private CategoryAxis x;
 	@FXML
     private NumberAxis y;
 	@FXML
 	private TextArea mailBody;
-	@FXML
-	private ProgressBar pBar;
-	
-
-
 	
 	@FXML
-	public void processData(ActionEvent e) {
-		final File folder = new File("/Users/pallavsaxena/Desktop/XYZ");
-		TrainMachine Tm = new TrainMachine();
-		Tm.prepareHashmap(folder);
+	public void processHData(ActionEvent e) {
+		final File folder=new File("/Users/pallavsaxena/Desktop/Ham");
+		TrainHamMachine TH=new TrainHamMachine();
+		TH.prepareHamHashmap(folder);
+	}
+	@FXML
+	public void processSData() {
+		final File folder=new File("/Users/pallavsaxena/Desktop/Spam");
+		TrainSpamMachine TS=new TrainSpamMachine();
+		TS.prepareSpamHashmap(folder);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	@FXML
 	public void processFile(ActionEvent e) {
 		String x[]=new String[2];
@@ -84,14 +86,27 @@ public class Controller{
     			x = tempS.split("\\s");
     			positive.setText(x[0]);
     			negative.setText(x[1]);
-    			
-    			chart.getData().clear();
+    			double x1=Double.parseDouble(x[0]);
+    			double x2=Double.parseDouble(x[1]);
+    			if(x1>x2) {
+    				result.setText("Ham Mail !!!!");
+    				result.setTextFill(Color.web("#008000"));
+    			}
+    			else if(3*x2>=x1){
+    				result.setText("Spam Mail !!!!");
+    				result.setTextFill(Color.web("#ff0000"));
+    			}
+    			else {
+    				result.setText("Unknown");
+    				result.setTextFill(Color.web("#000000"));
+    			}
+    			/*chart.getData().clear();
     			chart.layout();
     			XYChart.Series set1=new XYChart.Series<>();
     			chart.setAnimated(false);
     			set1.getData().add(new XYChart.Data("Ham",Double.parseDouble(x[0])));
     			set1.getData().add(new XYChart.Data("Spam",Double.parseDouble(x[1])));
-    			chart.getData().addAll(set1);
+    			chart.getData().addAll(set1);*/
     			BF.close();
     			}
             else {
@@ -106,13 +121,24 @@ public class Controller{
 			x = tempS.split("\\s");
 			positive.setText(x[0]);
 			negative.setText(x[1]);
-			chart.getData().clear();
+			double x1=Double.parseDouble(x[0]);
+			double x2=Double.parseDouble(x[1]);
+			if(x1>x2) {
+				result.setText("Ham Mail !!!!");
+			}
+			else if(3*x2>=x1){
+				result.setText("Spam Mail !!!!");
+			}
+			else {
+				result.setText("Unknown");
+			}
+			/*chart.getData().clear();
 			chart.layout();
 			XYChart.Series set1=new XYChart.Series<>();
 			chart.setAnimated(false);
 			set1.getData().add(new XYChart.Data("Ham",Double.parseDouble(x[0])));
 			set1.getData().add(new XYChart.Data("Spam",Double.parseDouble(x[1])));
-			chart.getData().addAll(set1);
+			chart.getData().addAll(set1);*/
             }
             
 		} catch (IOException e1) {
